@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kalash Marriage Garden, Dewas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #fefefe;
+      color: #333;
+    }
+
+    header {
+      background: url('https://source.unsplash.com/1600x600/?wedding,venue') no-repeat center center/cover;
+      color: white;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3em;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    nav {
+      background-color: #c0392b;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #c0392b;
+    }
+
+    .services, .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .service, .gallery img {
+      width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .contact-form input, .contact-form textarea {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .contact-form button {
+      padding: 12px;
+      background-color: #c0392b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      color: white;
+    }
+
+    /* Lightbox styles */
+    #lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to Kalash Marriage Garden, Dewas</h1>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Kalash Marriage Garden is a premier wedding venue located in Dewas, offering a serene and elegant setting for your most special day. With spacious lawns, stunning decor, and exceptional service, we make your dreams come true.</p>
+  </section>
+
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="service">
+        <img src="https://source.unsplash.com/300x200/?wedding,decoration" alt="Decoration" width="100%">
+        <p><strong>Event Decoration</strong></p>
+      </div>
+      <div class="service">
+        <img src="https://source.unsplash.com/300x200/?catering,food" alt="Catering" width="100%">
+        <p><strong>Catering Services</strong></p>
+      </div>
+      <div class="service">
+        <img src="https://source.unsplash.com/300x200/?wedding,photography" alt="Photography" width="100%">
+        <p><strong>Photography</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://source.unsplash.com/300x200/?wedding,1" alt="Gallery Image">
+      <img src="https://source.unsplash.com/300x200/?wedding,2" alt="Gallery Image">
+      <img src="https://source.unsplash.com/300x200/?wedding,3" alt="Gallery Image">
+      <img src="https://source.unsplash.com/300x200/?wedding,4" alt="Gallery Image">
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form class="contact-form" id="contactForm">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p style="text-align:center; margin-top:15px;" id="formMessage"></p>
+  </section>
+
+  <footer>
+    &copy; 2025 Kalash Marriage Garden, Dewas. All rights reserved.
+  </footer>
+
+  <!-- Lightbox for image preview -->
+  <div id="lightbox">
+    <img src="#" alt="Lightbox Image">
+  </div>
+
+  <script>
+    // Smooth scroll
+    $('nav a').on('click', function(e) {
+      e.preventDefault();
+      const target = $(this).attr('href');
+      $('html, body').animate({ scrollTop: $(target).offset().top - 70 }, 800);
+    });
+
+    // Contact form fake submit
+    $('#contactForm').on('submit', function(e) {
+      e.preventDefault();
+      $('#formMessage').text("Thank you! We'll get back to you soon.");
+      this.reset();
+    });
+
+    // Lightbox functionality
+    $('.gallery img').on('click', function() {
+      $('#lightbox img').attr('src', $(this).attr('src'));
+      $('#lightbox').fadeIn();
+    });
+
+    $('#lightbox').on('click', function() {
+      $(this).fadeOut();
+    });
+  </script>
+
+</body>
+</html>
